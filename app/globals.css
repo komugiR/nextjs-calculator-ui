@@ -18,6 +18,10 @@ body {
   display: flex; 
   gap: 25px; /* セット間の隙間 */
   margin-bottom: 20px;
+  overflow-x: auto; /* 横スクロールを可能にする */
+  padding-bottom: 20px; /* スクロールバーのための隙間 */
+  width: 100%; /* 親コンテナの幅いっぱいにする */
+  justify-content: flex-start; /* 左寄せにする */
 }
 
 /* 個々の電卓とログを縦に並べるためのセットコンテナ */
@@ -102,8 +106,8 @@ body {
   padding: 10px;
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-  width: auto;
-  max-width: 500px;
+  width: 180px;
+  max-width: none;
   margin-top: 0px;
   max-height: 250px;
   overflow-y: auto;
@@ -156,35 +160,7 @@ body {
 .calc-2 { color: #3498db; } /* 青系 */
 .calc-3 { color: #2ecc71; } /* 緑系 */
 
-@media (max-width: 768px) {
-  /* 全体の電卓とログのコンテナを縦並びにする */
-  .calculators-and-logs-container {
-    flex-direction: column;
-    gap: 30px; /* 縦の隙間を少し広げる */
-    width: 100%; /* 幅を画面いっぱいにする */
-    align-items: center;
-  }
 
-
-  .calculator-set {
-    width: 90%;
-    max-width: 350px;
-    text-align: center;
-  }
-
-  /* 電卓パネルとログパネルの幅を調整 */
-  .calculator-panel, 
-  .log-display-panel {
-    width: 100%; /* 親コンテナ (calculator-set) の幅に合わせる */
-    max-width: 100%;
-  }
-
-  /* メインタイトルのフォントサイズを小さくする */
-  h1 {
-    font-size: 1.5em;
-    text-align: center;
-  }
-}
 
 .calculator-overlay {
   position: fixed;
@@ -237,7 +213,7 @@ body {
 
 
 .calc-input-set {
-  width: 180%;
+  width: 150%;
   max-width: none;
   text-align: center;
 }
