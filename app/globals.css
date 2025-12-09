@@ -165,10 +165,11 @@ body {
     align-items: center;
   }
 
-  /* 個々の電卓セット（電卓とログ）のコンテナ */
+
   .calculator-set {
-    width: 90%; /* スマホ画面の幅いっぱいに広げる */
-    max-width: 300px; /* あまり広くなりすぎないよう最大幅を設定 */
+    width: 100px;
+    max-width: 300px;
+    text-align: center;
   }
 
   /* 電卓パネルとログパネルの幅を調整 */
@@ -203,6 +204,11 @@ body {
 }
 
 .calculator-overlay.is-open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.calculator-overlay .calculator-panel {
   width: 90%;
   max-width: 300px;
   position: relative;

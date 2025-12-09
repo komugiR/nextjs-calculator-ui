@@ -57,6 +57,11 @@ export default function GameUI() {
     3: { history: logHistory3, result: calcResult3, setHistory: setLogHistory3, setResult: setCalcResult3 },
     };
 
+    const activeResult =
+        activeCalcId === 1 ? calcResult1 :
+        activeCalcId === 2 ? calcResult2 :
+        activeCalcId === 3 ? calcResult3 : '';
+
     return (
         <div className="game-screen">
             <div className="calculators-and-logs-container">
@@ -71,6 +76,7 @@ export default function GameUI() {
                     addLogEntry={addLogEntry}
                     isOpen={true}
                     onClose={() => setActiveCalcId(null)}
+                    initialValue={activeResult}
                 />
             )}
         </div>

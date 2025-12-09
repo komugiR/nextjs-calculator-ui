@@ -1,7 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
-const Calculator = ({ id, addLogEntry, isOpen, onClose }) => {
-    const [input, setInput] = useState('');
+const Calculator = ({ id, addLogEntry, isOpen, onClose, initialValue }) => {
+    const [input, setInput] = useState(initialValue || '');
+
+    useEffect(() => {
+        setInput(initialValue || '');
+    }, [initialValue]);
 
     //ボタンが押されたとき
     const handleButtonClick = (value) => {
@@ -35,7 +39,7 @@ const Calculator = ({ id, addLogEntry, isOpen, onClose }) => {
     const calculateAndClose = () => {
         const success = calculate();
         if (success) {
-            onClose;
+            onClose();
         }
     }
 
