@@ -277,7 +277,7 @@ body {
   .calculators-and-logs-container {
     flex-direction: row; 
     flex-wrap: wrap; /* ★折り返しを有効化★ */
-    justify-content: center; /* 中央寄せ */
+    justify-content: flex-start;
     
     gap: 15px; 
     width: 100%;
@@ -297,13 +297,13 @@ body {
   
   /* --- 個々の要素の幅設定 --- */
   .calc-input-set {
-    width: 40%; /* セット幅の45% */
+    width: 45%; /* セット幅の45% */
     max-width: none;
     flex-shrink: 0;
   }
   
   .log-display-panel {
-    width: 55%; /* セット幅の50% */
+    width: 50%; /* セット幅の50% */
     max-width: none;
     flex-shrink: 0;
     max-height: 150px; /* 高さを制限して縦長を防ぐ */
