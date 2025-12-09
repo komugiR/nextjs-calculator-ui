@@ -23,8 +23,8 @@ body {
 /* 個々の電卓とログを縦に並べるためのセットコンテナ */
 .calculator-set {
   display: flex;
-  flex-direction: column; /* 縦に積み重ねる */
-  align-items: center;
+  flex-direction: row;
+  align-items: flex-start;
   gap: 15px; /* 電卓とログの隙間 */
 }
 
@@ -102,9 +102,9 @@ body {
   padding: 10px;
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-  width: 200px;
-  max-width: 800px;
-  margin-top: 20px;
+  width: auto;
+  max-width: 500px;
+  margin-top: 0px;
   max-height: 250px;
   overflow-y: auto;
   border: 3px solid #1abc9c;
@@ -159,7 +159,7 @@ body {
 @media (max-width: 768px) {
   /* 全体の電卓とログのコンテナを縦並びにする */
   .calculators-and-logs-container {
-    flex-direction: column; /* 横並びから縦並びに変更 */
+    flex-direction: column;
     gap: 30px; /* 縦の隙間を少し広げる */
     width: 100%; /* 幅を画面いっぱいにする */
     align-items: center;
@@ -167,7 +167,7 @@ body {
 
 
   .calculator-set {
-    width: 100px;
+    width: 90px;
     max-width: 300px;
     text-align: center;
   }
@@ -238,7 +238,7 @@ body {
 
 .calc-input-set {
   width: 100%;
-  max-width: 250px;
+  max-width: 200px;
   text-align: center;
 }
 
