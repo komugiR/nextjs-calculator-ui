@@ -167,8 +167,8 @@ body {
 
 
   .calculator-set {
-    width: 90px;
-    max-width: 300px;
+    width: 90%;
+    max-width: 350px;
     text-align: center;
   }
 
@@ -237,8 +237,8 @@ body {
 
 
 .calc-input-set {
-  width: 100%;
-  max-width: 200px;
+  width: 180%;
+  max-width: none;
   text-align: center;
 }
 
