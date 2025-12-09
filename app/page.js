@@ -3,11 +3,18 @@
 import React, { useCallback, useState } from "react";
 import Calculator from './components/Calculator';
 import LogDisplay from './components/LogDisplay';
+import CalcInput from './components/CalcInput'
 
 export default function GameUI() {
     const [logHistory1, setLogHistory1] = useState([]);
     const [logHistory2, setLogHistory2] = useState([]);
     const [logHistory3, setLogHistory3] = useState([]);
+
+    const [activeCalcId, setActiveCalcId] = useState(null);
+
+    const[calcResult1, setCalcResult1] = useState('');
+    const[calcResult2, setCalcResult2] = useState('');
+    const[calcResult3, setCalcResult3] = useState('');
 
     const addLogEntry = useCallback((calculatorId, expression, result) => {
         const newEntry = {
@@ -21,28 +28,51 @@ export default function GameUI() {
             second: '2-digit' 
             }),
         };
-        const setHistory = 
-        calculatorId === 1 ? setLogHistory1 :
-        calculatorId === 2 ? setLogHistory2 :
-        setLogHistory3;
-
-        setHistory(prevHistory => [newEntry, ...prevHistory]);
+        if (calculatorId === 1) {
+            setLogHistory1(prevHistory => [newEntry, ...prevHistory]);
+            setCalcResult1(String(result));
+        } else if (calculatorId === 2) {
+            setLogHistory2(prevHistory => [newEntry, ...prevHistory]);
+            setCalcResult2(String(result));
+        } else {
+            setLogHistory3(prevHistory => [newEntry, ...prevHistory]);
+            setCalcResult3(String(result));
+        }
     }, []);
 
-    const renderCalculatorSet = (id, history) => (
+    const renderCalculatorSet = (id, history, result) => (
         <div className="calculator-set" key={id}>
-            <Calculator id={id} addLogEntry={addLogEntry} />
+            <CalcInput
+                id={id}
+                currentResult={result}
+                onClick={() => setActiveCalcId(id)}
+            />
             <LogDisplay history={history} title={`ログ ${id}`}/>
         </div>
     );
 
+    const activeCalcProps = {
+    1: { history: logHistory1, result: calcResult1, setHistory: setLogHistory1, setResult: setCalcResult1 },
+    2: { history: logHistory2, result: calcResult2, setHistory: setLogHistory2, setResult: setCalcResult2 },
+    3: { history: logHistory3, result: calcResult3, setHistory: setLogHistory3, setResult: setCalcResult3 },
+    };
+
     return (
         <div className="game-screen">
             <div className="calculators-and-logs-container">
-                {renderCalculatorSet(1, logHistory1)}
-                {renderCalculatorSet(2, logHistory2)}
-                {renderCalculatorSet(3, logHistory3)}
+                {renderCalculatorSet(1, logHistory1, calcResult1)}
+                {renderCalculatorSet(2, logHistory2, calcResult2)}
+                {renderCalculatorSet(3, logHistory3, calcResult3)}
             </div>
+
+            {activeCalcId && (
+                <Calculator
+                    id={activeCalcId}
+                    addLogEntry={addLogEntry}
+                    isOpen={true}
+                    onClose={() => setActiveCalcId(null)}
+                />
+            )}
         </div>
     )
 }

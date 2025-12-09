@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const Calculator = ({ id, addLogEntry }) => {
+const Calculator = ({ id, addLogEntry, isOpen, onClose }) => {
     const [input, setInput] = useState('');
 
     //ボタンが押されたとき
@@ -8,7 +8,7 @@ const Calculator = ({ id, addLogEntry }) => {
         if (value === 'C') {
             setInput('');
         } else if (value === '=') {
-            calculate();
+            calculateAndClose();
         } else if (value === 'DEL') {
             setInput((prev) => prev.slice(0, -1));
         } else {
@@ -18,17 +18,26 @@ const Calculator = ({ id, addLogEntry }) => {
 
     const calculate = () => {
         try {
-            if (!input) return;
+            if (!input) return false;
 
             const result = parseFloat(eval(input).toFixed(2));
 
             addLogEntry(id, input, result);
 
             setInput(String(result)) //計算結果を表示
+            return true;
         } catch (e) {
             setInput('Error');
+            return false;
         }
     };
+
+    const calculateAndClose = () => {
+        const success = calculate();
+        if (success) {
+            onClose;
+        }
+    }
 
     const buttons = [
         '7', '8', '9', '/',
@@ -39,29 +48,32 @@ const Calculator = ({ id, addLogEntry }) => {
     ];
 
     return (
-        <div className="calculator-panel">
-            <h3>電卓 {id}</h3>
-            <input
-                type="text"
-                className="calc-display"
-                value={input}
-                readOnly
-            />
+        <div className={`calculator-overlay ${isOpen ? 'is-open' : ''}`}>
+            <div className="calculator-panel">
+                <button onClick={onClose} className='close-btn'>x</button>
+                <h3>電卓 {id}</h3>
+                <input
+                    type="text"
+                    className="calc-display"
+                    value={input}
+                    readOnly
+                />
 
-            <div className="calc-buttons">
-                {buttons.map((btn, index) => (
-                    <button
-                        key={index}
-                        onClick={() => handleButtonClick(btn)}
-                        className={
-                            btn === '=' ? 'equals' : (
-                                ['/', '*', '-', '+'].includes(btn) ? 'operator' : ''
-                            )
-                        }
-                    >
+                <div className="calc-buttons">
+                    {buttons.map((btn, index) => (
+                        <button
+                            key={index}
+                            onClick={() => handleButtonClick(btn)}
+                            className={
+                                btn === '=' ? 'equals' : (
+                                    ['/', '*', '-', '+'].includes(btn) ? 'operator' : ''
+                                )
+                            }
+                        >
                         {btn}
-                    </button>
-                ))}
+                        </button>
+                    ))}
+                </div>
             </div>
         </div>
     )
