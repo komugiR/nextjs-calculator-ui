@@ -275,9 +275,9 @@ body {
   
   /* --- 全体コンテナの修正: 2列折り返しを適用 --- */
   .calculators-and-logs-container {
-    flex-direction: row; 
-    flex-wrap: wrap; /* ★折り返しを有効化★ */
-    justify-content: flex-start;
+    flex-direction: column; 
+    flex-wrap: nowrap; 
+    justify-content: center;
     
     gap: 15px; 
     width: 100%;
@@ -286,7 +286,7 @@ body {
 
   /* --- 個々のセットの修正 (2列に配置) --- */
   .calculator-set {
-    width: 49%; /* ★ 2つ並んでも画面に収まるように設定 ★ */
+    width: 100%;
     max-width: none;
     
     flex-direction: row; /* 横並びは維持 */
@@ -297,13 +297,13 @@ body {
   
   /* --- 個々の要素の幅設定 --- */
   .calc-input-set {
-    width: 45%; /* セット幅の45% */
+    width: 50%; /* セット幅の45% */
     max-width: none;
     flex-shrink: 0;
   }
   
   .log-display-panel {
-    width: 50%; /* セット幅の50% */
+    width: 45%; /* セット幅の50% */
     max-width: none;
     flex-shrink: 0;
     max-height: 150px; /* 高さを制限して縦長を防ぐ */
