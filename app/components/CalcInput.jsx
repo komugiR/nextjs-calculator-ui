@@ -9,7 +9,7 @@ const CalcInput = ({ id, currentResult, onClick }) => {
                 className='calc-result-display'
                 onClick={onClick}
             >
-                <span className='result-text'>{currentResult || 'タップして計算'}</span>
+                <span className='result-text'>{currentResult || 'タップ'}</span>
             </div>
         </div>
     );
