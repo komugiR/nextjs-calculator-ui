@@ -3,7 +3,8 @@
 import React, { useCallback, useState } from "react";
 import Calculator from './components/Calculator';
 import LogDisplay from './components/LogDisplay';
-import CalcInput from './components/CalcInput'
+import CalcInput from './components/CalcInput';
+import LogButton from './components/LogButton';
 
 export default function GameUI() {
     const [logHistory1, setLogHistory1] = useState([]);
@@ -15,6 +16,8 @@ export default function GameUI() {
     const[calcResult1, setCalcResult1] = useState('');
     const[calcResult2, setCalcResult2] = useState('');
     const[calcResult3, setCalcResult3] = useState('');
+
+    const [activeLogId, setActiveLogId] = useState(null);
 
     const addLogEntry = useCallback((calculatorId, expression, result) => {
         const newEntry = {
@@ -47,20 +50,30 @@ export default function GameUI() {
                 currentResult={result}
                 onClick={() => setActiveCalcId(id)}
             />
-            <LogDisplay history={history} title={`ログ ${id}`}/>
+            <LogButton
+                id={id}
+                history={history}
+                onClick={() => setActiveLogId(id)}
+            />
         </div>
     );
 
     const activeCalcProps = {
-    1: { history: logHistory1, result: calcResult1, setHistory: setLogHistory1, setResult: setCalcResult1 },
-    2: { history: logHistory2, result: calcResult2, setHistory: setLogHistory2, setResult: setCalcResult2 },
-    3: { history: logHistory3, result: calcResult3, setHistory: setLogHistory3, setResult: setCalcResult3 },
+        1: { history: logHistory1, result: calcResult1, setHistory: setLogHistory1, setResult: setCalcResult1 },
+        2: { history: logHistory2, result: calcResult2, setHistory: setLogHistory2, setResult: setCalcResult2 },
+        3: { history: logHistory3, result: calcResult3, setHistory: setLogHistory3, setResult: setCalcResult3 },
     };
 
     const activeResult =
         activeCalcId === 1 ? calcResult1 :
         activeCalcId === 2 ? calcResult2 :
         activeCalcId === 3 ? calcResult3 : '';
+
+    const activeLogProps = {
+        1: { history: logHistory1, title: 'ログ 1' },
+        2: { history: logHistory2, title: 'ログ 2' },
+        3: { history: logHistory3, title: 'ログ 3' },
+    };
 
     return (
         <div className="game-screen">
@@ -77,6 +90,15 @@ export default function GameUI() {
                     isOpen={true}
                     onClose={() => setActiveCalcId(null)}
                     initialValue={activeResult}
+                />
+            )}
+
+            {activeLogId && activeLogProps[activeLogId] && (
+                <LogDisplay
+                    history={activeLogProps[activeLogId].history}
+                    title={activeLogProps[activeLogId].title}
+                    isOpen={true}
+                    onClose={() => setActiveLogId(null)}
                 />
             )}
         </div>

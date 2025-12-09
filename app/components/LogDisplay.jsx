@@ -1,8 +1,13 @@
 import React from "react";
 
-const LogDisplay = ({ history, title }) => {
+const LogDisplay = ({ history, title, isOpen, onClose }) => {
+    if (!isOpen) {
+        return null;
+    }
     return (
-        <div className="log-display-panel">
+        <div className={`calculator-overlay ${isOpen ? 'is-open' : ''}`}> 
+            <div className="log-display-panel overlay-panel"> {/* 新しいクラス名を追加 */}
+                <button onClick={onClose} className="close-btn">x</button>
             <h2>{title}</h2>
             {history.length === 0 ? (
                 <p className="no-log">履歴一覧</p>
@@ -21,7 +26,8 @@ const LogDisplay = ({ history, title }) => {
                         </li>
                     ))}
                 </ul>
-            )}
+                )}
+            </div>
         </div>
     )
 }

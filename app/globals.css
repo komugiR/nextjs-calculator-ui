@@ -310,3 +310,37 @@ body {
   }
 
 }
+
+.log-button-set {
+  width: 100%;
+  max-width: none;
+  text-align: center;
+}
+
+.log-trigger-display {
+  background-color: #1abc9c;
+  color: #fff;
+  padding: 15px 10px;
+  border-radius: 6px;
+  border: 2px solid #2ecc71;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 1.1em;
+}
+
+.log-trigger-display:hover {
+  background-color: #16a085;
+}
+
+.trigger-icon {
+  font-size: 1.5em;
+}
+
+.log-display-panel.overlay-panel {
+  max-width: 90%; 
+  max-height: 80vh;
+}
