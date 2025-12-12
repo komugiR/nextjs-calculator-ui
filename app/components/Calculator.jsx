@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
 
 const Calculator = ({ id, addLogEntry, isOpen, onClose, initialValue }) => {
+
+    //初期化
     const [input, setInput] = useState(initialValue || '');
 
+    //更新
     useEffect(() => {
         setInput(initialValue || '');
     }, [initialValue]);
@@ -24,7 +27,7 @@ const Calculator = ({ id, addLogEntry, isOpen, onClose, initialValue }) => {
         try {
             if (!input) return false;
 
-            const result = parseFloat(eval(input).toFixed(2));
+            const result = parseFloat(eval(input).toFixed(2));//webアプリなので許してください。悪魔は実行できないはず。
 
             addLogEntry(id, input, result);
 
