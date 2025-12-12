@@ -6,7 +6,7 @@ const CalcInput = ({ id, currentResult, onClick }) => {
             <h3 className='calc-input-title'>
                 {id === 1 ? '領地' : 
                  id === 2 ? '戦力' : 
-                 '戦力'} 
+                 '資産'} 
             </h3>
 
             <div
