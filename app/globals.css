@@ -341,6 +341,6 @@ body {
 }
 
 .log-display-panel.overlay-panel {
-  max-width: 90%; 
+  width: 95vh; 
   max-height: 80vh;
 }
